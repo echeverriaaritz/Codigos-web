@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> <!-- Indicamos que usamos codificación UTF-8 (acentos, ñ, etc.) -->
+    <title>Intranet</title> <!-- Título que se verá en la pestaña del navegador -->
+</head>
+<body>
+    <h2>Datuak</h2>
+    <!-- Contenedor donde JS meterá la lista de usuarios -->
+    <div id="idContainerGet"></div>
+
+    <h2>Sartu ID bat ezabatzeko</h2>
+    <!-- Input para escribir el id del usuario a borrar -->
+    <input type="text" id="inUserIdDel">
+    <!-- Botón que activará la función deleteId() de app.js -->
+    <button id="btnDel">Delete</button>
+
+    <h2>Insertatu Erabiltzaile Berri Bat</h2>
+    <!-- Inputs para los campos de un nuevo usuario -->
+    <input type="text"     id="inUsername" placeholder="Erabiltzailea">
+    <input type="password" id="inPassword" placeholder="Pasahitza">
+    <input type="text"     id="inCompany"  placeholder="Compañia">
+    <!-- Botón que activará la función insertUser() -->
+    <button id="btnInsert">Insert</button>
+
+    <!-- Cargamos jQuery desde CDN de Google -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Cargamos nuestro JS propio, donde están getAll, insertUser, deleteId -->
+    <script src="./js/app.js"></script>
+</body>
+</html>
