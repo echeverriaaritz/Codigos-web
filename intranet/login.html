@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <!-- Formulario de login -->
+    <input type="text" id="loginUsername" placeholder="Username" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+    <button id="btnLogin">Login</button>
+
+    <h2>Kontua ez daukazu?</h2>
+    <p>Registratu <a href="register.html">hemen</a>.</p>
+
+    <h2>Beste esteka batzuk:</h2>
+    <ul>
+        <li><a href="http://localhost/intranet/glpi/front/central.php" target="_blank">GLPI enlace</a></li>
+        <li><a href="https://asier-1.gitbook.io/asier-docs/erronka-1-dokumentazioa/segurtasuna/kontingentzia-plana" target="_blank">Kontingentzia Plana/a></li>
+    </ul>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Acción del botón de login
+        $('#btnLogin').click(function() {
+            var data = {
+                username: $('#loginUsername').val(),
+                password: $('#loginPassword').val()
+            };
+            $.post('./PHP/login/index.php', {param: JSON.stringify(data)}, function(res) {
+                if (res.msg === 'success') {
+                    // Redirigir a la página principal (index.html)
+                    window.location.href = './index.html';
+                } else {
+                    alert('Login failed');
+                }
+            }, 'json');
+        });
+    });
+    </script>
+</body>
+</html>
+

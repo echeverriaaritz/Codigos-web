@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    <h2>Registratzeko formularioa</h2>
+    <form id="registerForm">
+        <label for="username">Erabiltzailea:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Pasahitza:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Erregistratu</button>
+    </form>
+
+    <p>Kontua daukazu? <a href="login.html">Sesioa hasi</a></p>
+    <p><a href="http://localhost/intranet/glpi/front/login.php" target="_blank">GLPI esteka</a></p>
+    <p><a href="https://asier-1.gitbook.io/asier-docs/erronka-1-dokumentazioa/segurtasuna/kontingentzia-plana/" target="_blank">Kontingentzia Plana</a></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    // Cuando se envía el formulario con id 'registerForm'
+    $('#registerForm').on('submit', function(event) {
+        event.preventDefault(); // Evita que la página se recargue
+
+        // Tomar los datos que escribió el usuario
+        var formData = {
+            username: $('#username').val(), // Valor del nombre de usuario
+            password: $('#password').val()  // Valor de la contraseña
+        };
+
+        // Enviar los datos al archivo PHP que registra al usuario
+        $.ajax({
+            url: './PHP/register/index.php',   // Ruta del PHP
+            type: 'POST',                      // Método de envío
+            dataType: 'json',                  // Esperamos respuesta en JSON
+            data: { param: JSON.stringify(formData) }, // Convertimos los datos a JSON
+
+            // Si el PHP responde correctamente
+            success: function(response) {
+                alert(response.msg); // Mostrar mensaje devuelto por PHP
+                // Si el registro fue exitoso, ir a la página de login
+                if (response.msg.includes("correctamente")) {
+                    window.location.href = 'login.html';
+                }
+            },
+
+            // Si ocurre un error en la petición
+            error: function(xhr, status, error) {
+                alert("Ha ocurrido un error: " + error); // Mostrar mensaje de error
+            }
+        });
+    });
+</script>
+
+
+
